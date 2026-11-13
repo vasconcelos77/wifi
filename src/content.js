@@ -6,186 +6,184 @@ export const content = {
     "titleAfter": " e saiba o que testar antes de trocar equipamentos.",
     "subtitle": "Com 100 atlas visuais, compare cobertura, aparelhos e conexões para escolher o próximo teste e explicar ao cliente o que precisa ser verificado.",
     "bullets": [
-      "Consulte o tema da visita enquanto verifica a rede da residência.",
-      "Relacione conceitos, diagramas e comparações nas páginas dos atlas.",
-      "Confira os testes antes de atribuir a falha ao roteador."
+      "Consulte o tema durante a visita.",
+      "Compare diagramas direto nas páginas.",
+      "Confirme os testes antes de trocar o roteador."
     ],
-    "amplitude": "Do sinal ao diagnóstico: cobertura, testes, configuração e cenários residenciais."
+    "amplitude": "Cobertura, testes, configurações e cenários residenciais."
   },
   "pain": {
-    "title": "Atender uma reclamação de Wi-Fi",
-    "emphasis": "não precisa ser uma sequência de tentativas."
+    "title": "Atender Wi-Fi não precisa ser tentativa e erro."
   },
   "pains": [
-    "Sinal cheio, conexão travando",
+    "Sinal cheio, rede travando",
     "Quarto sem cobertura",
-    "Quedas durante a chamada",
+    "Quedas em chamadas",
     "Só um aparelho lento",
-    "Repetidor sem resultado",
-    "Trocar o roteador de novo"
+    "Repetidor sem efeito",
+    "Troca de roteador sem causa"
   ],
   "gallery": [
-    [
-      "atlas_016",
-      "Posicionamento do roteador"
-    ],
-    [
-      "atlas_025",
-      "Wi-Fi 6E e Wi-Fi 7"
-    ],
-    [
-      "atlas_032",
-      "Teste por cabo como referência"
-    ],
-    [
-      "atlas_040",
-      "Onde está o gargalo?"
-    ],
-    [
-      "atlas_048_1",
-      "Qual solução escolher?"
-    ],
-    [
-      "atlas_068_1",
-      "Diagnóstico por sintomas: conexão"
-    ],
-    [
-      "atlas_083",
-      "Streaming em televisores"
-    ],
-    [
-      "atlas_098_1",
-      "Projeto completo: levantamento"
-    ]
+    ["atlas_016", "Posicionamento do roteador"],
+    ["atlas_025", "Wi-Fi 6E e Wi-Fi 7"],
+    ["atlas_032", "Teste por cabo"],
+    ["atlas_040", "Onde está o gargalo?"],
+    ["atlas_048_1", "Qual solução escolher?"],
+    ["atlas_068_1", "Diagnóstico por sintomas"],
+    ["atlas_083", "Streaming em TVs"],
+    ["atlas_098_1", "Levantamento do projeto"]
   ],
   "mechanism": [
-    [
-      "Localize o sintoma",
-      "Comece pelo que o cliente relata e pelo que aparece no teste."
-    ],
-    [
-      "Confira as condições",
-      "Verifique rede, aparelho e conexão antes de concluir."
-    ],
-    [
-      "Compare os resultados",
-      "Use as verificações indicadas para separar possibilidades."
-    ],
-    [
-      "Defina o próximo passo",
-      "Registre o que foi observado e o que ainda precisa de análise."
-    ]
+    ["Localize o sintoma", "Parta do relato e do teste inicial."],
+    ["Confira as condições", "Avalie rede, aparelho e conexão."],
+    ["Compare os resultados", "Separe causas com o atlas."],
+    ["Defina o próximo passo", "Registre o observado e a próxima ação."]
   ],
-  "mechanismClose": "Consulte a página. Compare as condições. Explique a próxima verificação.",
+  "mechanismClose": "Consulte, compare e explique o próximo passo.",
   "pitch": {
-    "title": "O cliente pergunta se precisa trocar o roteador. O que você verifica primeiro?",
-    "text": "Consulte cobertura, conexões e sintomas para escolher a comparação que faz sentido no atendimento, antes de recomendar uma mudança."
+    "title": "Trocar o roteador ou testar primeiro?",
+    "text": "Compare cobertura, conexões e sintomas antes de indicar troca."
   },
   "audiences": [
-    [
-      "Auxiliares em atendimento residencial",
-      "Consulte conceitos enquanto acompanha as verificações da visita."
-    ],
-    [
-      "Instaladores de provedores",
-      "Compare posições e conexões antes de alterar a instalação."
-    ],
-    [
-      "Quem recebe reclamações de lentidão",
-      "Separe o comportamento de um aparelho do restante da rede."
-    ],
-    [
-      "Quem verifica quedas e travamentos",
-      "Relacione o sintoma às condições em que ele aparece."
-    ],
-    [
-      "Quem precisa explicar o resultado",
-      "Consulte os conceitos para apresentar o próximo passo ao cliente."
-    ],
-    [
-      "Quem avalia expansão da cobertura",
-      "Compare ponto cabeado, repetidor e mesh conforme o cenário."
-    ]
+    ["Auxiliares de campo", "Consulte conceitos durante a visita."],
+    ["Instaladores de provedores", "Compare posições antes de mudar a instalação."],
+    ["Atendimento de lentidão", "Separe falha de um aparelho da rede."],
+    ["Análise de quedas", "Relacione travamentos às condições locais."],
+    ["Explicação ao cliente", "Justifique o próximo passo com clareza."],
+    ["Expansão de cobertura", "Compare cabo, repetidor e mesh."]
   ],
   "benefits": [
-    "Consulte fundamentos, cobertura, testes, configurações e cenários residenciais.",
-    "Encontre diagramas e orientações organizados por tema técnico.",
-    "Diferencie sinal recebido, velocidade e experiência de uso.",
-    "Compare aparelhos, locais e conexões durante a visita.",
-    "Confira limitações antes de escolher outro equipamento.",
-    "Relacione sintomas às verificações indicadas nos atlas.",
-    "Receba o material em PDF com acesso vitalício.",
-    "Acrescente os quatro apoios de atendimento no Premium."
+    "Fundamentos, cobertura, testes e cenários.",
+    "Diagramas organizados por tema.",
+    "Diferença entre sinal, velocidade e uso.",
+    "Comparação de aparelhos e pontos.",
+    "Limitações antes de trocar equipamentos.",
+    "Relação entre sintomas e verificações.",
+    "PDF digital com acesso vitalício.",
+    "Quatro apoios extras no Premium."
   ],
   "bonuses": [
     {
       "slug": "kit",
       "title": "Kit de Visita Técnica Profissional",
       "text": "Checklists e fichas para preparar, registrar e encerrar a visita.",
-      "gain": "Registre testes, intervenções e pendências do atendimento."
+      "popupText": "Checklists e fichas para organizar o atendimento.",
+      "gain": "Registre testes e pendências.",
+      "priceCents": 4900
     },
     {
       "slug": "explicacao",
       "title": "Explicação ao Cliente sem Complicação",
-      "text": "Falas e mensagens adaptáveis para situações de Wi-Fi residencial.",
-      "gain": "Explique o que foi observado e o próximo teste."
+      "text": "Falas e mensagens para explicar as verificações ao cliente.",
+      "popupText": "Falas e mensagens adaptáveis às situações da visita.",
+      "gain": "Explique o diagnóstico com clareza.",
+      "priceCents": 4700
     },
     {
       "slug": "encaminhamento",
       "title": "Encaminhamento Técnico sem Retrabalho",
-      "text": "Fichas e mensagens para repassar a ocorrência ao próximo setor.",
-      "gain": "Encaminhe contexto, resultados e o que falta verificar."
+      "text": "Modelos para repassar contexto, testes, resultados e pendências.",
+      "popupText": "Modelos para repassar testes, resultados e pendências.",
+      "gain": "Envie contexto e testes ao próximo setor.",
+      "priceCents": 4900
     },
     {
       "slug": "proposta",
       "title": "Proposta de Melhoria da Rede Residencial",
-      "text": "Modelos para apresentar alternativas, escopo e condições de execução.",
-      "gain": "Justifique a melhoria com as evidências do atendimento."
+      "text": "Modelos para apresentar alternativas e justificar melhorias.",
+      "popupText": "Modelos para apresentar alternativas e justificar melhorias.",
+      "gain": "Justifique melhorias com evidências.",
+      "priceCents": 5200
     }
   ],
   "faqs": [
     [
-      "O que recebo no Básico?",
-      "Os 100 atlas em PDF, acesso vitalício e garantia de 15 dias."
+      "Qual a diferença entre Básico e Premium?",
+      "O Básico traz os 100 atlas em PDF, acesso vitalício e 15 dias de garantia. O Premium soma 4 bônus, suporte 24h e atualização mensal."
     ],
     [
-      "O que muda no Premium?",
-      "Além do Básico, os quatro bônus listados nesta página, suporte 24 horas e atualização mensal do conteúdo."
-    ],
-    [
-      "É um curso em vídeo?",
-      "Não. É material de consulta digital em PDF."
-    ],
-    [
-      "O material é físico?",
-      "Não. A entrega é digital, sem envio de livros ou equipamentos."
-    ],
-    [
-      "Posso consultar no celular?",
-      "Sim, em um leitor de PDF. Amplie a página para conferir os detalhes durante a consulta."
+      "Qual é o formato e posso ver no celular?",
+      "PDF digital, sem envio físico nem vídeos. Abra no celular e amplie na visita."
     ],
     [
       "Os atlas resolvem qualquer falha?",
-      "Não. Apoiam conceitos e verificações; a conclusão depende dos testes e das condições da rede. Siga os procedimentos do provedor."
-    ],
-    [
-      "Como funciona a garantia?",
-      "Os dois planos têm garantia de 15 dias. [CANAL E PROCEDIMENTO A INFORMAR]."
+      "Apoiam conceitos e verificações; o resultado depende dos testes e procedimentos do provedor."
     ],
     [
       "Como recebo os PDFs?",
-      "O formato PDF e o acesso vitalício estão confirmados. [CANAL E PRAZO DE ENTREGA A INFORMAR]."
+      "PDF com acesso vitalício confirmado. [CANAL E PRAZO DE ENTREGA A INFORMAR]."
+    ],
+    [
+      "Como funciona a garantia de 15 dias?",
+      "Válida nos dois planos por 15 dias. [CANAL E PROCEDIMENTO A INFORMAR]."
     ],
     [
       "Como funciona o suporte 24 horas?",
-      "É um benefício exclusivo do Premium. [CANAL, ESCOPO E PRAZO DE RESPOSTA A INFORMAR]."
+      "Exclusivo do Premium. [CANAL, ESCOPO E PRAZO DE RESPOSTA A INFORMAR]."
     ],
     [
-      "As atualizações mensais estão no Básico?",
-      "Não. A atualização mensal do conteúdo está incluída no Premium. [CANAL DE DISPONIBILIZAÇÃO A INFORMAR]."
+      "As atualizações mensais estão nos dois planos?",
+      "Não, apenas no Premium. [CANAL DE DISPONIBILIZAÇÃO A INFORMAR]."
     ]
   ],
+  "testimonials": [
+    {
+      "id": "andre-ferreira",
+      "images": [
+        {
+          "src": "/assets/depoimentos/wujRPFa.png",
+          "width": 760,
+          "height": 1118,
+          "alt": "Conversa no WhatsApp com Cliente André Ferreira relatando que gostou do bônus de explicações ao cliente e adaptou as falas para explicar comparações de sinal no quarto sem termos técnicos."
+        }
+      ]
+    },
+    {
+      "id": "bruno",
+      "images": [
+        {
+          "src": "/assets/depoimentos/O5lFNnS.png",
+          "width": 760,
+          "height": 1118,
+          "alt": "Conversa no WhatsApp com Cliente Bruno relatando que escolheu o Plano Premium pelos bônus e usou a ficha do kit de visita para registrar testes, pendências e separar o relato do cliente do que foi verificado."
+        }
+      ]
+    },
+    {
+      "id": "camila-rodrigues",
+      "images": [
+        {
+          "src": "/assets/depoimentos/Ea8LAbq.png",
+          "width": 760,
+          "height": 1080,
+          "alt": "Conversa no WhatsApp com Cliente Camila Rodrigues relatando que gostou do modelo de encaminhamento para organizar o que o cliente relatou, o que testou e o que ainda precisava de análise."
+        }
+      ]
+    },
+    {
+      "id": "rafael",
+      "images": [
+        {
+          "src": "/assets/depoimentos/RpAn570.png",
+          "width": 760,
+          "height": 966,
+          "alt": "Conversa no WhatsApp com Cliente Rafael relatando que consultou os atlas de posicionamento e cobertura pelo celular durante uma visita de reclamação de sinal no quarto antes de sugerir outro equipamento."
+        }
+      ]
+    },
+    {
+      "id": "juliana-martins",
+      "images": [
+        {
+          "src": "/assets/depoimentos/Yr06pd3.png",
+          "width": 760,
+          "height": 1080,
+          "alt": "Conversa no WhatsApp com Cliente Juliana Martins relatando que é auxiliar e usa os diagramas dos atlas para estudar em casa e consultar no celular ao acompanhar o instalador."
+        }
+      ]
+    }
+  ],
   "closing": {
-    "text": "Na próxima reclamação, tenha os conceitos e as verificações à mão para definir o que investigar."
+    "text": "Tenha conceitos e testes à mão no próximo atendimento."
   }
 };

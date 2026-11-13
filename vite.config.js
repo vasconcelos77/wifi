@@ -15,5 +15,5 @@ export default defineConfig({
   }
  }}],
  build:{copyPublicDir:false},
- server:{host:'127.0.0.1'},preview:{host:'127.0.0.1'}
+ server:{host:'0.0.0.0',port:3000,allowedHosts:true},preview:{host:'0.0.0.0',port:3000}
 });
