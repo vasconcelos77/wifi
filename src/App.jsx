@@ -23,6 +23,7 @@ import { content } from './content.js';
 import { comercial, formatBRL, isDailyOfferActive } from './comercial.js';
 import Testimonials from './components/Testimonials.jsx';
 import UpsellModal from './components/UpsellModal.jsx';
+import LegalModal from './components/LegalModal.jsx';
 
 const painIcons = [Clock3, Layers3, MonitorSmartphone, SearchCheck, FileQuestion, AlertTriangle];
 const mechanismIcons = [BookOpen, SearchCheck, AlertTriangle, ListChecks];
@@ -431,7 +432,7 @@ function Plan({ premium = false, pulseVisible = false, stagger = 0, onBasicClick
       style={{ '--stagger': stagger }}
     >
       {premium && (
-        <p className="plan-badge">100 ATLAS + {content.bonuses.length} BÔNUS</p>
+        <p className="plan-badge">MELHOR CUSTO BENEFÍCIO</p>
       )}
       <h3>Plano {plan.name}</h3>
       <p className="plan-description">
@@ -491,17 +492,13 @@ function Plan({ premium = false, pulseVisible = false, stagger = 0, onBasicClick
             GARANTIR O PLANO PREMIUM
           </a>
         ) : (
-          <>
-            <button
-              className={`btn ${premiumBtnClass}`}
-              type="button"
-              onClick={() => {}}
-              aria-describedby="plan-premium-checkout-note"
-            >
-              GARANTIR O PLANO PREMIUM
-            </button>
-            <p id="plan-premium-checkout-note" className="checkout-note">Checkout em preparação</p>
-          </>
+          <button
+            className={`btn ${premiumBtnClass}`}
+            type="button"
+            onClick={() => {}}
+          >
+            GARANTIR O PLANO PREMIUM
+          </button>
         )}
         <div className="payment-trust">
           <span>
@@ -521,6 +518,7 @@ function Plan({ premium = false, pulseVisible = false, stagger = 0, onBasicClick
 export default function App() {
   const [preview, setPreview] = useState(null);
   const [upsellOpen, setUpsellOpen] = useState(false);
+  const [activeLegal, setActiveLegal] = useState(null);
   const [heroVisible, setHeroVisible] = useState(true);
   const [premiumVisible, setPremiumVisible] = useState(false);
   const heroMediaRef = useRef(null);
@@ -839,24 +837,13 @@ export default function App() {
         <section className="section offer" id="oferta">
           <div className="content content--1040 section-flow">
             <SectionTitle>Escolha seu plano.</SectionTitle>
-            <div className="value-stack" data-reveal="">
-              <p>INCLUSO EM CADA PLANO</p>
-              <ul>
-                <li>
-                  <span>100 atlas em PDF, acesso vitalício e garantia de 15 dias</span>
-                  <strong>Nos dois planos</strong>
-                </li>
-                {content.bonuses.map((b) => (
-                  <li key={b.slug}>
-                    <span>{b.title}</span>
-                    <strong>Premium</strong>
-                  </li>
-                ))}
-                <li>
-                  <span>Suporte 24h e atualização mensal</span>
-                  <strong>Premium</strong>
-                </li>
-              </ul>
+            <div className="offer-summary" data-reveal="">
+              <p>
+                <strong>Nos dois planos:</strong> 100 atlas em PDF, acesso vitalício e garantia de 15 dias.
+              </p>
+              <p>
+                <strong className="offer-highlight">No Premium:</strong> mais 4 bônus, suporte 24 horas e atualização mensal.
+              </p>
             </div>
             <div className="plans-grid">
               <Plan
@@ -936,13 +923,23 @@ export default function App() {
           <p>{comercial.company}</p>
           <p className="footer-legal">Material de apoio técnico. Siga os procedimentos do provedor.</p>
           <nav aria-label="Informações legais">
-            {comercial.termsUrl ? <a href={comercial.termsUrl}>Termos de uso</a> : <span>[TERMOS DE USO]</span>}
-            {comercial.privacyUrl ? (
-              <a href={comercial.privacyUrl}>Política de privacidade</a>
-            ) : (
-              <span>[POLÍTICA DE PRIVACIDADE]</span>
-            )}
+            <button
+              type="button"
+              className="legal-link-btn"
+              onClick={() => setActiveLegal('terms')}
+            >
+              Termos de uso
+            </button>
+            <span aria-hidden="true">•</span>
+            <button
+              type="button"
+              className="legal-link-btn"
+              onClick={() => setActiveLegal('privacy')}
+            >
+              Política de privacidade
+            </button>
           </nav>
+          <p className="footer-copyright">© 2026 Atlas Wi-Fi Residencial. Todos os direitos reservados.</p>
         </div>
       </footer>
 
@@ -952,6 +949,7 @@ export default function App() {
         onClose={() => setUpsellOpen(false)}
         returnFocusRef={basicBtnRef}
       />
+      {activeLegal && <LegalModal type={activeLegal} onClose={() => setActiveLegal(null)} />}
     </>
   );
 }

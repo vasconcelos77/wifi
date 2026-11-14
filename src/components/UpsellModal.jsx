@@ -3,8 +3,25 @@ import { ChevronDown, Clock, Gift, X } from 'lucide-react';
 import { comercial, formatBRL, getPopupUpgradeDiffCents } from '../comercial.js';
 import { content } from '../content.js';
 
-const STORAGE_KEY = 'wifi_atlas_upsell_expires_at';
-const DURATION_SECONDS = 180;
+export const UPSELL_DURATION_SECONDS = 180;
+
+export function createUpsellExpiresAt(now = Date.now()) {
+  return now + UPSELL_DURATION_SECONDS * 1000;
+}
+
+export function stepUpsellCountdown(expiresAt, now = Date.now()) {
+  const diffMs = expiresAt - now;
+  if (diffMs <= 0) {
+    return {
+      remainingSeconds: UPSELL_DURATION_SECONDS,
+      expiresAt: createUpsellExpiresAt(now),
+    };
+  }
+  return {
+    remainingSeconds: Math.min(UPSELL_DURATION_SECONDS, Math.ceil(diffMs / 1000)),
+    expiresAt,
+  };
+}
 
 function getFocusableElements(container) {
   if (!container) return [];
@@ -22,10 +39,15 @@ export default function UpsellModal({ open, onClose, returnFocusRef }) {
   const modalRef = useRef(null);
   const closeBtnRef = useRef(null);
   const premiumBtnRef = useRef(null);
+  const onCloseRef = useRef(onClose);
+  const returnFocusRefCurrent = useRef(returnFocusRef);
+
+  onCloseRef.current = onClose;
+  returnFocusRefCurrent.current = returnFocusRef;
 
   const [bonusesOpen, setBonusesOpen] = useState(false);
   const [btnVisible, setBtnVisible] = useState(false);
-  const [remainingSeconds, setRemainingSeconds] = useState(DURATION_SECONDS);
+  const [remainingSeconds, setRemainingSeconds] = useState(UPSELL_DURATION_SECONDS);
 
   const popupPrice = formatBRL(comercial.popupPremium.priceCents);
   const basicPrice = formatBRL(comercial.basic.priceCents);
@@ -37,34 +59,24 @@ export default function UpsellModal({ open, onClose, returnFocusRef }) {
     if (!open) {
       setBonusesOpen(false);
       setBtnVisible(false);
+      setRemainingSeconds(UPSELL_DURATION_SECONDS);
       return undefined;
     }
 
-    let expiresAt = Number(localStorage.getItem(STORAGE_KEY));
-    const now = Date.now();
-    if (!expiresAt || Number.isNaN(expiresAt) || expiresAt <= now) {
-      expiresAt = now + DURATION_SECONDS * 1000;
-      localStorage.setItem(STORAGE_KEY, String(expiresAt));
-    }
+    let expiresAt = createUpsellExpiresAt();
+    setRemainingSeconds(UPSELL_DURATION_SECONDS);
 
-    const calcRemaining = () => {
-      const diff = Math.max(0, Math.floor((expiresAt - Date.now()) / 1000));
-      setRemainingSeconds(diff);
-      return diff;
+    const syncRemaining = () => {
+      const next = stepUpsellCountdown(expiresAt);
+      expiresAt = next.expiresAt;
+      setRemainingSeconds(next.remainingSeconds);
     };
 
-    calcRemaining();
-
-    const timer = setInterval(() => {
-      const left = calcRemaining();
-      if (left <= 0) {
-        clearInterval(timer);
-      }
-    }, 1000);
+    const timer = window.setInterval(syncRemaining, 250);
 
     const handleVisibility = () => {
       if (document.visibilityState === 'visible') {
-        calcRemaining();
+        syncRemaining();
       }
     };
 
@@ -84,7 +96,7 @@ export default function UpsellModal({ open, onClose, returnFocusRef }) {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
         e.preventDefault();
-        onClose();
+        onCloseRef.current?.();
         return;
       }
 
@@ -110,17 +122,17 @@ export default function UpsellModal({ open, onClose, returnFocusRef }) {
     document.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      clearInterval(timer);
+      window.clearInterval(timer);
       document.removeEventListener('visibilitychange', handleVisibility);
       window.removeEventListener('focus', handleVisibility);
       window.cancelAnimationFrame(focusFrame);
       document.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = previousOverflow;
       window.requestAnimationFrame(() => {
-        returnFocusRef?.current?.focus();
+        returnFocusRefCurrent.current?.current?.focus();
       });
     };
-  }, [open, onClose, returnFocusRef]);
+  }, [open]);
 
   useEffect(() => {
     if (!open) return undefined;
@@ -143,12 +155,11 @@ export default function UpsellModal({ open, onClose, returnFocusRef }) {
 
   if (!open) return null;
 
-  const isExpired = remainingSeconds <= 0;
   const minutes = String(Math.floor(remainingSeconds / 60)).padStart(2, '0');
   const seconds = String(remainingSeconds % 60).padStart(2, '0');
   const timeFormatted = `${minutes}:${seconds}`;
 
-  const premiumBtnClass = `btn btn--premium${btnVisible && !isExpired ? ' btn--pulse' : ''}`;
+  const premiumBtnClass = `btn btn--premium${btnVisible ? ' btn--pulse' : ''}`;
 
   return (
     <div
@@ -167,15 +178,11 @@ export default function UpsellModal({ open, onClose, returnFocusRef }) {
         aria-modal="true"
         aria-labelledby={titleId}
       >
-        <div className={`upsell-timer-banner${isExpired ? ' is-expired' : ''}`}>
+        <div className="upsell-timer-banner">
           <Clock size={15} aria-hidden="true" />
-          {isExpired ? (
-            <span>OFERTA ENCERRADA</span>
-          ) : (
-            <span>
-              OFERTA EXPIRA EM: <strong className="upsell-timer-digits">{timeFormatted}</strong>
-            </span>
-          )}
+          <span>
+            OFERTA EXPIRA EM: <strong className="upsell-timer-digits">{timeFormatted}</strong>
+          </span>
         </div>
 
         <button
@@ -246,19 +253,7 @@ export default function UpsellModal({ open, onClose, returnFocusRef }) {
         </div>
 
         <div className="upsell-actions">
-          {isExpired ? (
-            <>
-              <p className="upsell-expired-notice">A condição de R$19,90 terminou.</p>
-              <a
-                ref={premiumBtnRef}
-                className="btn btn--premium"
-                href="#oferta"
-                onClick={onClose}
-              >
-                VER PLANO PREMIUM
-              </a>
-            </>
-          ) : popupCheckoutUrl ? (
+          {popupCheckoutUrl ? (
             <a
               ref={premiumBtnRef}
               className={premiumBtnClass}
@@ -267,36 +262,28 @@ export default function UpsellModal({ open, onClose, returnFocusRef }) {
               GARANTIR O PLANO PREMIUM
             </a>
           ) : (
-            <>
-              <button
-                ref={premiumBtnRef}
-                type="button"
-                className={premiumBtnClass}
-                onClick={() => {}}
-                aria-describedby="upsell-premium-note"
-              >
-                GARANTIR O PLANO PREMIUM
-              </button>
-              <p id="upsell-premium-note" className="upsell-note">Checkout em preparação</p>
-            </>
+            <button
+              ref={premiumBtnRef}
+              type="button"
+              className={premiumBtnClass}
+              onClick={() => {}}
+            >
+              GARANTIR O PLANO PREMIUM
+            </button>
           )}
 
           {basicCheckoutUrl ? (
             <a className="upsell-basic-action" href={basicCheckoutUrl}>
-              CONTINUAR COM O BÁSICO — {basicPrice.replace(/\s+/g, '')}
+              GARANTIR O PLANO BÁSICO
             </a>
           ) : (
-            <>
-              <button
-                type="button"
-                className="upsell-basic-action"
-                onClick={() => {}}
-                aria-describedby="upsell-basic-note"
-              >
-                CONTINUAR COM O BÁSICO — {basicPrice.replace(/\s+/g, '')}
-              </button>
-              <p id="upsell-basic-note" className="upsell-note">Checkout em preparação</p>
-            </>
+            <button
+              type="button"
+              className="upsell-basic-action"
+              onClick={() => {}}
+            >
+              GARANTIR O PLANO BÁSICO
+            </button>
           )}
         </div>
       </div>

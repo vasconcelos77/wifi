@@ -14,13 +14,13 @@ export const comercial = {
     "name": "Básico",
     "priceCents": 1000,
     "price": 10,
-    "checkoutUrl": null
+    "checkoutUrl": "https://ggcheckout.app/checkout/v5/SgzD6paL93HmzbZe4bxRdG"
   },
   "premium": {
     "name": "Premium",
     "priceCents": 2790,
     "price": 27.9,
-    "checkoutUrl": null,
+    "checkoutUrl": "https://ggcheckout.app/checkout/v5/gLFnxNqAA0kx725UcbY700",
     "support": "Suporte 24 horas",
     "updates": "Atualização mensal do conteúdo"
   },
@@ -28,14 +28,14 @@ export const comercial = {
     "name": "Premium",
     "priceCents": 1990,
     "price": 19.9,
-    "checkoutUrl": null
+    "checkoutUrl": "https://ggcheckout.app/checkout/v5/jhA4xrBg5EEtjQgyjBtWXS"
   },
-  "supportContact": "[CONTATO DE SUPORTE]",
-  "company": "[RAZÃO SOCIAL / CNPJ]",
-  "termsUrl": null,
-  "privacyUrl": null,
-  "delivery": "[CANAL E PRAZO DE ENTREGA A INFORMAR]",
-  "guaranteeProcedure": "[CANAL E PROCEDIMENTO DA GARANTIA A INFORMAR]"
+  "supportContact": "Atendimento e suporte via WhatsApp disponíveis na página de checkout",
+  "company": "Atlas Wi-Fi Residencial",
+  "termsUrl": "#termos",
+  "privacyUrl": "#privacidade",
+  "delivery": "Entrega digital imediata em PDF",
+  "guaranteeProcedure": "Garantia incondicional de 15 dias"
 };
 
 export function getPopupUpgradeDiffCents(cfg = comercial) {
